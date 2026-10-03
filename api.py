@@ -752,14 +752,34 @@ def quest_weekly():
     return {**result, "pet": wolf.payload(state(), date.today())}
 
 
+@app.post("/api/games/plinko")
+def game_plinko(body: dict):
+    return _wolf_call(wolf.play_plinko, body.get("session_id", ""), mega=bool(body.get("mega")))
+
+
+@app.post("/api/games/crossy/start")
+def game_crossy_start(body: dict):
+    return _wolf_call(wolf.crossy_start, body.get("session_id", ""), mega=bool(body.get("mega")))
+
+
+@app.post("/api/games/crossy/hop")
+def game_crossy_hop(body: dict):
+    return _wolf_call(wolf.crossy_hop, body.get("session_id", ""))
+
+
+@app.post("/api/games/crossy/cashout")
+def game_crossy_cashout(body: dict):
+    return _wolf_call(wolf.crossy_cashout, body.get("session_id", ""))
+
+
 @app.post("/api/games/slot")
 def game_slot(body: dict):
-    return _wolf_call(wolf.play_slot, body.get("session_id", ""))
+    return _wolf_call(wolf.play_slot, body.get("session_id", ""), mega=bool(body.get("mega")))
 
 
 @app.post("/api/games/roulette")
 def game_roulette(body: dict):
-    return _wolf_call(wolf.play_roulette, body.get("session_id", ""))
+    return _wolf_call(wolf.play_roulette, body.get("session_id", ""), mega=bool(body.get("mega")))
 
 
 # --------------------------------------------------------------------------- #

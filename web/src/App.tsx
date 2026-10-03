@@ -16,8 +16,9 @@ import Courses from './pages/Courses'
 import Settings from './pages/Settings'
 import Den from './pages/Den'
 import Wolf from './components/Wolf'
+import MegaToggle from './components/MegaToggle'
 import { RewardHost } from './components/Rewards'
-import { setMuted, sfx, useMuted } from './sound'
+import { cycleVolume, sfx, useVolume } from './sound'
 
 const NAV = [
   { group: 'Overview', items: [{ to: '/', label: 'Dashboard', icon: LayoutDashboard }, { to: '/den', label: 'My wolf', icon: PawPrint }] },
@@ -51,7 +52,7 @@ function Sidebar() {
   const { data } = useApi('/dashboard')
   const { data: pet } = useApi('/pet')
   const streak = data?.kpis.streak ?? 0
-  const muted = useMuted()
+  const vol = useVolume()
   const risk = pet?.streak_risk
   return (
     <aside className="sidebar">
@@ -86,7 +87,7 @@ function Sidebar() {
           </NavLink>)}
         <div className="streak"><Flame size={20} color={risk?.at_risk && streak >= 2 ? 'var(--warning)' : 'var(--glow)'} className={streak ? 'pulse' : ''} /> {streak}-day streak</div>
         <small>{risk?.at_risk && streak >= 2 ? `Ends in ${Math.floor(risk.hours_left)}h — study to save it` : streak ? 'Keep the pack moving.' : 'Log a session to start one.'}</small>
-        <button className="btn ghost sm" style={{ marginTop: 8, padding: '4px 8px' }} aria-label={muted ? 'Unmute sounds' : 'Mute sounds'} onClick={() => { setMuted(!muted); if (muted) setTimeout(sfx.coin, 50) }}>{muted ? <VolumeX size={15} /> : <Volume2 size={15} />} {muted ? 'Sound off' : 'Sound on'}</button>
+        <button className="btn ghost sm" style={{ marginTop: 8, padding: '4px 8px' }} aria-label={`Sound: ${vol}. Click to change`} onClick={() => { cycleVolume(); setTimeout(sfx.ching, 60) }}>{vol === 'off' ? <VolumeX size={15} /> : <Volume2 size={15} />} Sound: {vol === 'insane' ? 'INSANE' : vol === 'loud' ? 'Loud' : vol === 'normal' ? 'Normal' : 'Off'}</button>
       </div>
     </aside>
   )
@@ -128,6 +129,7 @@ export default function App() {
           <AnimatedRoutes />
         </div>
         <RewardHost />
+        <MegaToggle />
       </ToastProvider>
     </BrowserRouter>
   )
