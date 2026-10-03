@@ -23,3 +23,6 @@ models/*.joblib
 # React front end
 web/node_modules/
 web/dist/
+
+# Local dev-server config (machine-specific paths)
+.claude/
