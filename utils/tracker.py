@@ -12,6 +12,7 @@ dashboard survives restarts without needing a database::
       "flashcards_reviewed": {"BIO 181": 42, ...},
       "grades":    {"BIO 181": [{"item", "type", "weight", "score"}]},  # see utils/grades.py
       "profile":   {self-reported fields used by the risk model},
+      "pet":       {tokens, owned/equipped items, tickets...}  # see utils/pet.py
       "active_timer": null | {"course", "notes", "first_start", "start", "accum", "running"}
     }
 """
@@ -57,6 +58,7 @@ def default_state(courses: list[str] | None = None) -> dict[str, Any]:
         "grades": {},
         "study_plans": {},
         "profile": {},
+        "pet": {},
         "active_timer": None,
     }
 

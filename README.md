@@ -8,7 +8,29 @@ may be at risk of finishing a course with a D or F, with an explanation and conc
 
 ---
 
-## How to run it (step by step)
+## New UI (React + FastAPI)
+
+The front end is a fluid, green-and-black, wolf-themed React app built around the Wolf Tracks paw logo. It talks to
+a FastAPI service (`api.py`) that wraps the same Python logic as before (`utils/`), so the risk model, grade
+calculator, study planner and Gemini features are unchanged. The design lives in Figma:
+[Wolf Tracks – UI Redesign](https://www.figma.com/design/BMPmgHj0N4HEnX2we7HVdJ) (design system + 8 screens).
+
+**Run it (two terminals):**
+```
+# 1. API  (after: python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt)
+uvicorn api:app --port 8000
+
+# 2. Web  (needs Node 20+)
+cd web && npm install && npm run dev        # http://localhost:5173
+```
+Or build once and let the API serve everything on one port: `cd web && npm run build`, then `uvicorn api:app --port 8000`
+and open http://localhost:8000.
+
+The older Streamlit app (`streamlit run app.py`) still works and uses the same data file.
+
+---
+
+## How to run the Streamlit version (step by step)
 
 You only need to do steps 1–4 once. After that, skip to step 5 each time.
 
@@ -181,7 +203,10 @@ Run `python -m utils.model` to retrain and print the metrics. The trained model 
 
 ## Project structure
 ```
-app.py                     Streamlit UI (all pages, navigation, dialogs)
+api.py                     FastAPI service used by the React app
+utils/pet.py               Wolf mood, tokens, shop catalog, slot machine and roulette logic
+web/                       React + Vite + TypeScript front end (src/pages = one file per page, src/components/Wolf.tsx = the wolf)
+app.py                     Original Streamlit UI (all pages, navigation, dialogs)
 utils/model.py             Data loading, held-out split, training, joblib persistence, prediction + explanations
 utils/tracker.py           Courses, sessions, streaks, achievements, calendar, archives, grid/calendar HTML
 utils/ai_helper.py         PDF/PPTX/DOCX parsing; Gemini summaries, flashcards, quizzes, syllabus extraction
