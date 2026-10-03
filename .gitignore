@@ -19,3 +19,7 @@ data/uploads/
 
 # Generated model (rebuilt automatically from the dataset)
 models/*.joblib
+
+# React front end
+web/node_modules/
+web/dist/
