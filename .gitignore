@@ -1,0 +1,21 @@
+# Python / environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets — never commit API keys
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.key
+*.pem
+
+# Personal dashboard data (export an archive instead)
+data/user_state.json
+data/user_state.tmp
+data/uploads/
+
+# Generated model (rebuilt automatically from the dataset)
+models/*.joblib
