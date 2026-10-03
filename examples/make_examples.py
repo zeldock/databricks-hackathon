@@ -4,7 +4,7 @@
 
 Outputs (see examples/README.md for how to use each one)
 -------
-dashboard_archive/example_student_archive.zip   A full StudyPulse dashboard: ~5 months of study sessions,
+dashboard_archive/example_student_archive.zip   A full Wolf Tracks dashboard: ~5 months of study sessions,
                                                 calendar events, quizzes, grades and two uploaded notes.
 student_csvs/heldout_students.csv               The exact 20% held-out split the model never trained on.
 student_csvs/new_class_unlabeled.csv            25 held-out students with the at_risk column removed.

@@ -1,4 +1,5 @@
 [theme]
+base = "light"  # the logo and calendar colors are designed for a light background
 primaryColor = "#2da44e"
 
 [server]

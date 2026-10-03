@@ -1,6 +1,8 @@
-# 🐺 StudyPulse — AI-Powered Student Dashboard (WolfHacks 2026)
+<p align="center"><img src="assets/wordmark.png" alt="Wolf Tracks" width="420"></p>
 
-StudyPulse brings a student's courses, deadlines, study time and study materials into one place. It uses AI to
+# Wolf Tracks — AI-Powered Student Dashboard (WolfHacks 2026)
+
+Wolf Tracks brings a student's courses, deadlines, study time and study materials into one place. It uses AI to
 turn notes into summaries, flashcards and practice quizzes, and a **decision-tree model** to warn students who
 may be at risk of finishing a course with a D or F, with an explanation and concrete next steps.
 
@@ -128,7 +130,7 @@ To rebuild the example files: `python examples/make_examples.py`.
 | Overview | **Dashboard** | Getting-started checklist, weekly/total hours, streaks, GitHub-style activity grid, weekly chart, upcoming deadlines, risk snapshot |
 | Study | **Study log** | Live timer (survives refreshes), add past sessions, 30-day chart, history with multi-select delete |
 | | **Calendar** | Month and week views of exams, deadlines, quizzes and milestones — click any event to mark it complete; week view also lists each day's study sessions; AI syllabus import |
-| | **Study plan** | Pick an upcoming exam or quiz, then **upload the slides / notes / study guide it covers right on the page** (or pick ones you already uploaded, and type topics your instructor mentioned). StudyPulse finds the topics (Gemini, or slide titles and headings offline), ranks them by priority and builds a day-by-day plan: learn each topic, practice the weak and important ones, a timed rehearsal, then light review and rest. A **Next up** box tells you exactly which topic to study now; rate each topic Shaky / OK / Confident and re-plan around your weak ones. Add sessions to the calendar, start a timer, or download |
+| | **Study plan** | Pick an upcoming exam or quiz, then **upload the slides / notes / study guide it covers right on the page** (or pick ones you already uploaded, and type topics your instructor mentioned). Wolf Tracks finds the topics (Gemini, or slide titles and headings offline), ranks them by priority and builds a day-by-day plan: learn each topic, practice the weak and important ones, a timed rehearsal, then light review and rest. A **Next up** box tells you exactly which topic to study now; rate each topic Shaky / OK / Confident and re-plan around your weak ones. Add sessions to the calendar, start a timer, or download |
 | | **Study materials** | Upload PDF / PPTX / DOCX / TXT / MD → AI summary, flip-card flashcards, scored practice quizzes |
 | Insights | **Risk check** | **Grade calculator** (current average, expected final grade, score needed for each letter) plus D/F risk from the decision tree, cross-checked against each other; works from your activity, an uploaded CSV, a dataset student, or a what-if profile. Every value can be dragged **or typed** |
 | | **Achievements** | 12 badges (streaks, hours, quiz scores, flashcards, deadlines…) with progress |

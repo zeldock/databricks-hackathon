@@ -1,1 +1,1 @@
-"""Helper modules for the StudyPulse dashboard: risk model, study tracker, and Gemini AI helpers."""
+"""Helper modules for the Wolf Tracks dashboard: risk model, study tracker, and Gemini AI helpers."""

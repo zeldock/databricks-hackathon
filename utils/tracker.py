@@ -198,7 +198,7 @@ def import_archive(data: bytes) -> dict[str, Any]:
     try:
         zf = zipfile.ZipFile(io.BytesIO(data))
     except zipfile.BadZipFile as exc:
-        raise ValueError("That file is not a StudyPulse archive (.zip).") from exc
+        raise ValueError("That file is not a Wolf Tracks archive (.zip).") from exc
     with zf:
         if ARCHIVE_STATE_NAME not in zf.namelist():
             raise ValueError(f"Archive is missing {ARCHIVE_STATE_NAME}.")

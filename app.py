@@ -1,4 +1,4 @@
-"""StudyPulse — an AI-powered student dashboard for WolfHacks 2026.
+"""Wolf Tracks — an AI-powered student dashboard for WolfHacks 2026.
 
 Run with:  streamlit run app.py
 
@@ -39,7 +39,8 @@ from utils import ai_helper, grades, planner, tracker
 from utils import model as risk_model
 
 load_dotenv(tracker.ROOT / ".env")
-st.set_page_config(page_title="StudyPulse", page_icon="🐺", layout="wide")
+ASSETS = tracker.ROOT / "assets"
+st.set_page_config(page_title="Wolf Tracks", page_icon=str(ASSETS / "logo.png"), layout="wide")
 
 UPLOAD_DIR = tracker.UPLOAD_DIR
 GREEN = "#2da44e"
@@ -944,7 +945,7 @@ def _topic_guide(state: dict, plan: dict, test: dict, today: date) -> None:
 
 def page_plan() -> None:
     state, bundle, today = get_state(), get_bundle(), date.today()
-    page_header("Study plan", "Pick an upcoming test, tell StudyPulse what's on it, and get a day-by-day plan that "
+    page_header("Study plan", "Pick an upcoming test, tell Wolf Tracks what's on it, and get a day-by-day plan that "
                               "walks you through every topic.")
     require_courses(state, "plan for a test")
     tests = sorted((e for e in state["events"] if e["type"] in ("Exam", "Quiz") and not e["done"]
@@ -984,7 +985,7 @@ def page_plan() -> None:
     with st.container(border=True):
         st.subheader("1 · What's on this test?")
         st.caption("Upload the slides, notes or study guide this test covers (several at once is fine), or pick "
-                   "files you've already uploaded. StudyPulse finds the topics and builds your plan around them.")
+                   "files you've already uploaded. Wolf Tracks finds the topics and builds your plan around them.")
         nonce = st.session_state.get(f"plan-upload-nonce-{test_id}", 0)
         uploader_key = f"plan-upload-{test_id}-{nonce}"
         files = st.file_uploader("Add files for this test", type=ai_helper.SUPPORTED_TYPES, accept_multiple_files=True,
@@ -1032,7 +1033,7 @@ def page_plan() -> None:
 
     plan = state["study_plans"].get(test_id)
     if not plan:
-        st.caption("Tell StudyPulse what's on the test, then click **Generate study plan**.")
+        st.caption("Tell Wolf Tracks what's on the test, then click **Generate study plan**.")
         return
 
     # Step 3 — the guide and the schedule
@@ -1699,7 +1700,7 @@ def my_activity_form(state: dict, bundle: dict, today: date, course: str, midter
 
     with st.container(border=True):
         st.subheader("From your activity")
-        st.caption(f"Filled in automatically from what you do in StudyPulse for {course} — these update as you "
+        st.caption(f"Filled in automatically from what you do in Wolf Tracks for {course} — these update as you "
                    "study, tick off deadlines and use your study materials.")
         missing = []
         feats = list(ACTIVITY_FEATURES)
@@ -2041,12 +2042,12 @@ def page_settings() -> None:
             st.session_state["export_bytes"] = tracker.export_archive(state)
         if st.session_state.get("export_bytes"):
             st.download_button("Download archive", st.session_state["export_bytes"], type="primary",
-                               icon=":material/download:", file_name=f"studypulse-archive-{today:%Y%m%d}.zip",
+                               icon=":material/download:", file_name=f"wolf-tracks-archive-{today:%Y%m%d}.zip",
                                mime="application/zip")
 
     with st.container(border=True):
         st.subheader("Import data")
-        st.caption("Load an archive exported from StudyPulse — try `examples/dashboard_archive/example_student_archive.zip`.")
+        st.caption("Load an archive exported from Wolf Tracks — try `examples/dashboard_archive/example_student_archive.zip`.")
         archive = st.file_uploader("Archive (.zip)", type=["zip"],
                                    key=f"archive-{st.session_state.get('archive_nonce', 0)}")
         if st.button("Import archive", type="primary", icon=":material/upload:", disabled=archive is None):
@@ -2063,7 +2064,7 @@ def page_settings() -> None:
         st.subheader(":red[Danger zone]")
         st.caption("Permanently delete all courses, sessions, events, materials and quiz results on this computer.")
         if st.button("Erase all data", icon=":material/delete_forever:"):
-            confirm_dialog("Erase **all** your StudyPulse data? This can't be undone.", "Erase everything",
+            confirm_dialog("Erase **all** your Wolf Tracks data? This can't be undone.", "Erase everything",
                            _do_reset)
 
 
@@ -2097,6 +2098,9 @@ def main() -> None:
         "Insights": [PAGE["risk"], PAGE["achievements"], PAGE["insights"]],
         "Manage": [PAGE["courses"], PAGE["settings"]],
     })
+    # Logo + name at the top left of the sidebar (just the paw when the sidebar is collapsed).
+    st.logo(str(ASSETS / "wordmark.png"), icon_image=str(ASSETS / "logo.png"), size="large")
+    st.html("<style>[data-testid='stSidebarLogo'], [data-testid='stHeaderLogo'] { height: 2.75rem; }</style>")
     sidebar_status(state, today)
     render_effects()  # confetti queued by a callback or before an st.rerun()
     navigation.run()

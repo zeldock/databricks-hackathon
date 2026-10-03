@@ -1,6 +1,6 @@
 # Example files
 
-Ready-made files for trying every part of StudyPulse without entering your own data.
+Ready-made files for trying every part of Wolf Tracks without entering your own data.
 Everything here is **fictional** — "Example State University", its instructors and the example.edu addresses
 don't exist.
 
