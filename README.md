@@ -2,6 +2,8 @@
 
 # Wolf Tracks — AI-Powered Student Dashboard (WolfHacks 2026)
 
+# AI Statement: We directed AI tools to create the majority of our code
+
 Wolf Tracks brings a student's courses, deadlines, study time and study materials into one place. It uses AI to
 turn notes into summaries, flashcards and practice quizzes, and a **decision-tree model** to warn students who
 may be at risk of finishing a course with a D or F, with an explanation and concrete next steps.
